@@ -42,7 +42,7 @@ class Experiment:
         self.loss_fn = nn.CrossEntropyLoss()
         # TODO: put choice of topk in cfg (change get_key_metric too).
         self.metric_fn = AccuracyEstimator(topk=(1,))
-        # TODO: parametrize the choice of optimizer and scheduler (affect optimizer_config)
+        # TODO: parametrize the choice of optimizer and scheduler (optimizer_config)
         self.optimizer = optim.SGD(self.model.parameters(),
                                    lr=optimizer_config.learning_rate,
                                    weight_decay=optimizer_config.weight_decay,
@@ -51,13 +51,13 @@ class Experiment:
             self.optimizer,
             milestones=optimizer_config.lr_step_milestones,
             gamma=optimizer_config.lr_multiplier)
-        self.visualizer = TensorBoardVisualizer()
 
     def run(self, trainer_config: configuration.TrainerConfig) -> dict:
 
         device = torch.device(trainer_config.device)
         self.model = self.model.to(device)
         self.loss_fn = self.loss_fn.to(device)
+        self.visualizer = TensorBoardVisualizer(trainer_config.visualizer_dir)
 
         model_trainer = Trainer(
             model=self.model,
