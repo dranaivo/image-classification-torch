@@ -77,7 +77,7 @@ class TrainerConfig:
     '''
     model_dir: str = "checkpoints/alexnet/"
     visualizer_dir: str = "logs/"
-    model_saving_frequency: int = 5
+    model_saving_frequency: int = 10
     device: str = "gpu"
-    epoch_num: int = 20
+    epoch_num: int = 50
     progress_bar: bool = True
