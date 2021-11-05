@@ -8,7 +8,9 @@ def get_dataloaders(data_root: str, batch_size: int, num_workers: int, data_augm
     '''Returns the train and validation dataloaders.
 
     Each loader yields a tensor of shape [batch_size, 3, 224, 224]. Of note is that the training 
-    uses RandomResizedCrop : it randomly crop the image, then this crop is resized (to 224).
+    uses RandomResizedCrop : it randomly crop the image, then this crop is resized (to 224). 
+    The torchvision.transforms.ToTensor class converts a PIL Image or numpy.ndarray (H x W x C) 
+    in the range [0, 255] to a torch.FloatTensor of shape (C x H x W) in the range [0.0, 1.0].
 
     Args:
         data_root : dataset directory root.
