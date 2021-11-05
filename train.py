@@ -57,7 +57,7 @@ class Experiment:
         device = torch.device(trainer_config.device)
         self.model = self.model.to(device)
         self.loss_fn = self.loss_fn.to(device)
-        self.visualizer = TensorBoardVisualizer(trainer_config.visualizer_dir)
+        self.visualizer = TensorBoardVisualizer(save_dir=trainer_config.visualizer_dir)
 
         model_trainer = Trainer(
             model=self.model,
