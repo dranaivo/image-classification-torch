@@ -16,7 +16,10 @@ from trainer.tensorboard_visualizer import TensorBoardVisualizer
 #TODO(me): Module docstring (ALL)
 
 class Experiment:
-    '''Define the experiment with the given model and given data.'''
+    '''Define an experiment. 
+    
+    An set of (model, data) constitues an experiment.
+    '''
 
     def __init__(self,
                  model: nn.Module, 
