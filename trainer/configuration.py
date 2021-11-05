@@ -39,7 +39,7 @@ class DataConfig:
     n_classes: int = 3
     data_augmentation: bool = False
     batch_size: int = 2
-    num_workers: int = 1
+    num_workers: int = 2
 
 
 @dataclass
@@ -69,13 +69,15 @@ class TrainerConfig:
 
     Members:
         model_dir: directory to save model states
+        visualizer_dir: directory to save visualizer logs (i.e. Tensorboard)
         model_saving_frequency: frequency of model state savings per epochs
         device: device to use for training.
         epoch_num: number of times the whole dataset will be passed through the network.
         progress_bar: enable progress bar visualization during train process.
     '''
     model_dir: str = "checkpoints/alexnet/"
-    model_saving_frequency: int = 1
+    visualizer_dir: str = "logs/"
+    model_saving_frequency: int = 5
     device: str = "gpu"
-    epoch_num: int = 2
+    epoch_num: int = 20
     progress_bar: bool = True
