@@ -4,8 +4,6 @@ from operator import itemgetter
 import torch
 import torch.nn as nn
 import torch.optim as optim
-
-from torchvision import datasets, transforms
 from torch.optim.lr_scheduler import MultiStepLR
 
 from trainer import Trainer, hooks, configuration
