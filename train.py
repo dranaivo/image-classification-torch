@@ -18,7 +18,7 @@ from trainer.tensorboard_visualizer import TensorBoardVisualizer
 class Experiment:
     '''Define an experiment. 
     
-    An set of (model, data) constitues an experiment.
+    A set of (model, data) constitues an experiment.
     '''
 
     def __init__(self,
