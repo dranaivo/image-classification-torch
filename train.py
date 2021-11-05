@@ -37,7 +37,7 @@ class Experiment:
 
         self.model = model
         self.loss_fn = nn.CrossEntropyLoss()
-        # TODO: put choice of topk in cfg.
+        # TODO: put choice of topk in cfg (change get_key_metric too).
         self.metric_fn = AccuracyEstimator(topk=(1,))
         # TODO: parametrize the choice of optimizer and scheduler (affect optimizer_config)
         self.optimizer = optim.SGD(self.model.parameters(),
