@@ -2,6 +2,7 @@
 > AlexNet [ok]
 > ResNet
 > EfficientNet
+(TODO: USE PATTERN TO DISPATCH MODELS)
 '''
 from torch import nn
 from torchvision import models
