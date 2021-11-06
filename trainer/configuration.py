@@ -8,7 +8,6 @@ from typing import Callable, Iterable
 from dataclasses import dataclass
 from torchvision.transforms import ToTensor
 
-#TODO: configuration for Visualizer 
 
 @dataclass
 class SystemConfig:
