@@ -4,7 +4,10 @@ from torchvision import transforms, datasets
 from torch.utils.data import DataLoader
 
 
-def get_dataloaders(data_root: str, batch_size: int, num_workers: int, data_augmentation: bool=False):
+def get_dataloaders(data_root: str,
+                    batch_size: int,
+                    num_workers: int,
+                    data_augmentation: bool = False):
     '''Returns the train and validation dataloaders.
 
     Each loader yields a tensor of shape [batch_size, 3, 224, 224]. Of note is that the training 
@@ -28,35 +31,37 @@ def get_dataloaders(data_root: str, batch_size: int, num_workers: int, data_augm
     std = [0.229, 0.224, 0.225]
     normalize = transforms.Normalize(mean, std)
 
-    # training 
+    # training
     if data_augmentation:
         data_aug_tf = transforms.Compose([
             transforms.RandomRotation(5),
             transforms.RandomHorizontalFlip(0.5),
-        ]) # in case we add an augmentation
+        ])    # in case we add an augmentation
         train_tf = transforms.Compose([
-            transforms.RandomResizedCrop(224),
-            data_aug_tf,
-            transforms.ToTensor(),
-            normalize
+            transforms.RandomResizedCrop(224), data_aug_tf,
+            transforms.ToTensor(), normalize
         ])
     else:
         train_tf = transforms.Compose([
             transforms.RandomResizedCrop(224),
-            transforms.ToTensor(),
-            normalize
+            transforms.ToTensor(), normalize
         ])
     train_ds = datasets.ImageFolder(training_split, transform=train_tf)
-    train_loader = DataLoader(train_ds, batch_size=batch_size, num_workers=num_workers, shuffle=True)
+    train_loader = DataLoader(train_ds,
+                              batch_size=batch_size,
+                              num_workers=num_workers,
+                              shuffle=True)
 
     # validation
     val_tf = transforms.Compose([
         transforms.Resize(256),
         transforms.CenterCrop(224),
-        transforms.ToTensor(),
-        normalize
+        transforms.ToTensor(), normalize
     ])
     val_ds = datasets.ImageFolder(validation_split, transform=val_tf)
-    val_loader = DataLoader(val_ds, batch_size=batch_size, num_workers=num_workers, shuffle=False)
+    val_loader = DataLoader(val_ds,
+                            batch_size=batch_size,
+                            num_workers=num_workers,
+                            shuffle=False)
 
     return train_loader, val_loader
