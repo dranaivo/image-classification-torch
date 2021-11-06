@@ -1,10 +1,6 @@
 # Pytorch image classification
 
-[Descr] A classification framework implemented in Pytorch.
-
-
-
-...
+This is a framework for producing image classification models.
 
 # Attribution
 
