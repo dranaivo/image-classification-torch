@@ -79,5 +79,5 @@ class TrainerConfig:
     visualizer_dir: str = "logs/"
     model_saving_frequency: int = 10
     device: str = "gpu"
-    epoch_num: int = 50
+    epoch_num: int = 2
     progress_bar: bool = True
