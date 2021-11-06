@@ -12,7 +12,7 @@ class TensorBoardVisualizer(Visualizer):
 
     def update_charts(self, train_metric, train_loss, test_metric, test_loss,
                       learning_rate, epoch):
-        
+
         loss_scalars = dict()
         if train_loss is not None:
             loss_scalars["train"] = train_loss
@@ -29,7 +29,7 @@ class TensorBoardVisualizer(Visualizer):
         if train_metric is not None:
             for metric_key, metric_value in train_metric.items():
                 metrics[metric_key]["train"] = metric_value
-        
+
         for metric, scalars in metrics.items():
             self._writer.add_scalars(metric, scalars, global_step=epoch)
 
