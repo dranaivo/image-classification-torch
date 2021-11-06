@@ -9,7 +9,9 @@ from torchvision import models
 from torchvision.models.alexnet import alexnet
 import torch
 
-def get_model(pretrained: bool=True, n_classes: int=1000) -> torch.nn.Module:
+
+def get_model(pretrained: bool = True,
+              n_classes: int = 1000) -> torch.nn.Module:
     ''' Create a classification model (Alexnet)
 
     The classifier head of the classification model is always initialized.
@@ -25,7 +27,7 @@ def get_model(pretrained: bool=True, n_classes: int=1000) -> torch.nn.Module:
     # this is a copy of model.classifer
     classifier_ft = nn.Sequential(
         nn.Dropout(p=0.5, inplace=False),
-        nn.Linear(256*6*6, out_features=64, bias=True),
+        nn.Linear(256 * 6 * 6, out_features=64, bias=True),
         nn.ReLU(inplace=True),
         nn.Dropout(p=0.5, inplace=False),
         nn.Linear(64, out_features=64, bias=True),
