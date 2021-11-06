@@ -15,20 +15,21 @@ from trainer.tensorboard_visualizer import TensorBoardVisualizer
 
 #TODO(me): Module docstring (ALL)
 
+
 class Experiment:
     '''Define an experiment. 
     
     A set of (model, data) constitues an experiment.
     '''
 
-    def __init__(self,
-                 model: nn.Module, 
-                 system_config: configuration.SystemConfig = configuration.
-                 SystemConfig(),
-                 data_config: configuration.DataConfig = configuration.
-                 DataConfig(),
-                 optimizer_config: configuration.
-                 OptimizerConfig = configuration.OptimizerConfig()):
+    def __init__(
+        self,
+        model: nn.Module,
+        system_config: configuration.SystemConfig = configuration.SystemConfig(
+        ),
+        data_config: configuration.DataConfig = configuration.DataConfig(),
+        optimizer_config: configuration.OptimizerConfig = configuration.
+        OptimizerConfig()):
 
         self.loader_train, self.loader_test = get_dataloaders(
             data_config.root_dir,
@@ -57,7 +58,8 @@ class Experiment:
         device = torch.device(trainer_config.device)
         self.model = self.model.to(device)
         self.loss_fn = self.loss_fn.to(device)
-        self.visualizer = TensorBoardVisualizer(save_dir=trainer_config.visualizer_dir)
+        self.visualizer = TensorBoardVisualizer(
+            save_dir=trainer_config.visualizer_dir)
 
         model_trainer = Trainer(
             model=self.model,
@@ -68,8 +70,10 @@ class Experiment:
             optimizer=self.optimizer,
             lr_scheduler=self.lr_scheduler,
             device=device,
-            data_getter=itemgetter(0),  #me: a fancy way to extract x (item[0])
-            target_getter=itemgetter(1),  #me:a fancy way to extract y (item[1])
+            data_getter=itemgetter(
+                0),    #me: a fancy way to extract x (item[0])
+            target_getter=itemgetter(
+                1),    #me:a fancy way to extract y (item[1])
             stage_progress=trainer_config.progress_bar,
             get_key_metric=itemgetter("top1"),
             visualizer=self.visualizer,
@@ -89,14 +93,10 @@ def main():
 
     data_config = configuration.DataConfig()
     data_config, trainer_config = patch_configs(
-        trainer_config=configuration.TrainerConfig,
-        data_config=data_config
-    )
+        trainer_config=configuration.TrainerConfig, data_config=data_config)
     #TODO: add model config, for pre-trained
     model = get_model(pretrained=False, n_classes=data_config.n_classes)
-    experiment = Experiment(
-                            model=model,
-                            data_config=data_config)
+    experiment = Experiment(model=model, data_config=data_config)
     results = experiment.run(trainer_config)
 
     return results
