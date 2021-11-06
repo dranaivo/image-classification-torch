@@ -26,7 +26,7 @@ from .visualizer import Visualizer
 class Trainer:
     """ Generic class for training loop."""
 
-    def __init__(  # pylint: disable=too-many-arguments
+    def __init__(   
             self,
             model: torch.nn.Module,
             loader_train: torch.utils.data.DataLoader,
@@ -163,8 +163,10 @@ class Trainer:
                 #TODO: implement save_best (https://github.com/pytorch/examples/blob/42e5b996718797e45c46a25c55b031e6768f8440/imagenet/main.py#L135)
                 torch.save(
                     self.model.state_dict(),
-                    os.path.join(self.save_dir, "_".join([self.model_name_prefix, "epoch", str(epoch)]) + ".pth")
-                )
+                    os.path.join(
+                        self.save_dir,
+                        "_".join([self.model_name_prefix, "epoch",
+                                  str(epoch)]) + ".pth"))
 
         return self.metrics
 
