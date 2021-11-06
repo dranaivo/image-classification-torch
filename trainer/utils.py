@@ -28,8 +28,8 @@ class AverageMeter:
         self.count += count
         self.avg = self.sum / self.count
 
-def patch_configs(trainer_config=TrainerConfig,
-                  data_config=DataConfig):
+
+def patch_configs(trainer_config=TrainerConfig, data_config=DataConfig):
     """Standard configurations if GPU is not available.
 
     Returns:
